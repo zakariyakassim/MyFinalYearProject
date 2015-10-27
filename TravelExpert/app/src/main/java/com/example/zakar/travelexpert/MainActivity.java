@@ -1,5 +1,6 @@
 package com.example.zakar.travelexpert;
 
+import android.app.ListActivity;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,14 +9,25 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.opencsv.CSVReader;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    static List<String[]> bustops;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+      //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+     //   setSupportActionBar(toolbar);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("BUS"));
@@ -44,7 +56,38 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+   loadBustops();
+
     }
+
+
+    public void loadBustops(){
+        InputStream inputStream = getResources().openRawResource(R.raw.busstops);
+
+        String next[] = {};
+        bustops = new ArrayList<>();
+
+        try {
+            CSVReader reader = new CSVReader(new InputStreamReader(inputStream));
+
+            while (true) {
+
+                next = reader.readNext();
+                if (next != null) {
+                    bustops.add(next);
+
+                } else {
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -61,6 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
+
 }
 
 

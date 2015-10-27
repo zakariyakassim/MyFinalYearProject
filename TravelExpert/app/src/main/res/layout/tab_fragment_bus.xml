@@ -4,4 +4,41 @@
     tools:context="com.example.zakar.travelexpert.TabFragmentBus"
     android:background="#c8c8c8">
 
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get nearest bustops"
+        android:id="@+id/btnBus"
+        android:background="@drawable/busbutton"
+        android:textColor="#ce193e"
+        android:layout_alignTop="@+id/btnTube"
+        android:layout_toLeftOf="@+id/btnTube"
+        android:layout_toStartOf="@+id/btnTube"
+        android:layout_gravity="right|top" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/lblTitle"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:textColor="#5b5b5b" />
+
+
+
+    <ListView
+        android:id="@+id/busListView"
+        android:layout_width="match_parent"
+        android:layout_height="298dp"
+        android:layout_weight="0.40"
+        android:background="#ffffff"
+        android:layout_gravity="center_horizontal|bottom">
+
+    </ListView>
+
+
 </FrameLayout>
