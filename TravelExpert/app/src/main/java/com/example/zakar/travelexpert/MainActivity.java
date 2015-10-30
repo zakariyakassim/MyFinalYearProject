@@ -1,6 +1,8 @@
 package com.example.zakar.travelexpert;
 
 import android.app.ListActivity;
+import android.content.Context;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -8,7 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import com.opencsv.CSVReader;
 
 import java.io.IOException;
@@ -21,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     static List<String[]> bustops;
+    TextView lblLoc;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
       //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
      //   setSupportActionBar(toolbar);
+context = this;
+lblLoc = (TextView) findViewById(R.id.lblLoc);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("BUS"));
@@ -58,6 +69,27 @@ public class MainActivity extends AppCompatActivity {
         });
 
    loadBustops();
+
+
+
+
+        lblLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Utilities utilities = new Utilities();
+
+                Location location = utilities.getCurrentLocation(context);
+
+                if (location != null) {
+                    lblLoc.setText("Latitude: " + location.getLatitude() +"   Longitude: "+location.getLongitude());
+
+                } else {
+                  //  utilities.showGPSDisabledAlert("Please enable your location or connect to cellular network.", context);
+                }
+            }
+        });
+
+
 
     }
 
@@ -104,9 +136,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 
 
 }

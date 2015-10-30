@@ -1,16 +1,59 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.zakar.travelexpert.TabFragmentRail"
-    android:background="#c8c8c8">
+    tools:context="com.example.zakar.travelexpert.TabFragmentBus"
+    android:background="#383a55">
 
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="RAIL"
-        android:id="@+id/textView2"
-        android:layout_gravity="center" />
+        android:text="Get nearest bustops"
+        android:id="@+id/btnBus"
+        android:background="@drawable/busbutton"
+        android:layout_alignTop="@+id/btnTube"
+        android:layout_toLeftOf="@+id/btnTube"
+        android:layout_toStartOf="@+id/btnTube"
+        android:layout_gravity="right|top"
+        android:textColor="#383a55" />
+
+
+    <ListView
+        android:id="@+id/busListView"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        android:layout_weight="0.40"
+        android:background="#55587D"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="34dp">
+
+    </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_gravity="bottom"
+        android:background="#383a55">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/lblBustopName"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:autoText="false"
+            android:textColor="#c8c8c8"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dp"
+            android:background="#383a55" />
+    </RelativeLayout>
+
 
 </FrameLayout>

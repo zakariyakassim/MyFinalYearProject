@@ -26,4 +26,5 @@ dependencies {
     compile 'com.android.support:design:23.1.0'
     compile files('libs/org.apache.http.legacy.jar')
     compile files('libs/opencsv-3.5.jar')
+    compile 'com.google.android.gms:play-services:8.1.0'
 }
