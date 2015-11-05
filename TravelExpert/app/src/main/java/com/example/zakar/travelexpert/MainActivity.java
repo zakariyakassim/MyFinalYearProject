@@ -13,9 +13,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.opencsv.CSVReader;
 
 import java.io.IOException;
@@ -35,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-      //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-     //   setSupportActionBar(toolbar);
-context = this;
-lblLoc = (TextView) findViewById(R.id.lblLoc);
+        //  Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //   setSupportActionBar(toolbar);
+        context = this;
+        lblLoc = (TextView) findViewById(R.id.lblLoc);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("BUS"));
@@ -68,10 +71,12 @@ lblLoc = (TextView) findViewById(R.id.lblLoc);
             }
         });
 
-   loadBustops();
+        loadBustops();
 
 
+        
 
+lblLoc.setVisibility(View.GONE);
 
         lblLoc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,20 +86,21 @@ lblLoc = (TextView) findViewById(R.id.lblLoc);
                 Location location = utilities.getCurrentLocation(context);
 
                 if (location != null) {
-                    lblLoc.setText("Latitude: " + location.getLatitude() +"   Longitude: "+location.getLongitude());
-
+                  //  lblLoc.setText("Latitude: " + location.getLatitude() + "   Longitude: " + location.getLongitude());
+                    lblLoc.setText(location.getTime() + "");
+                   // lblLoc.setText(""+location.getSpeed());
                 } else {
-                  //  utilities.showGPSDisabledAlert("Please enable your location or connect to cellular network.", context);
+                    //  utilities.showGPSDisabledAlert("Please enable your location or connect to cellular network.", context);
                 }
             }
         });
 
 
-
     }
 
 
-    public void loadBustops(){
+
+    public void loadBustops() {
         InputStream inputStream = getResources().openRawResource(R.raw.busstops);
 
         String next[] = {};
@@ -120,7 +126,6 @@ lblLoc = (TextView) findViewById(R.id.lblLoc);
     }
 
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -136,6 +141,8 @@ lblLoc = (TextView) findViewById(R.id.lblLoc);
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }

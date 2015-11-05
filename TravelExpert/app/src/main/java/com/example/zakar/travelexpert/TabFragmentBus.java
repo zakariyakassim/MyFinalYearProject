@@ -27,6 +27,12 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.opencsv.CSVReader;
 
 import org.json.JSONArray;
@@ -61,6 +67,7 @@ TextView lblBustopName;
 
     Button btnBus;
     View rootView;
+
 
 
     @Override
@@ -101,8 +108,6 @@ lblBustopName = (TextView) rootView.findViewById(R.id.lblBustopName);
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
         }
-
-
 
 
         return rootView;
@@ -189,6 +194,8 @@ public void run(){
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+
 
     private class GetBusTimes extends AsyncTask<String, Void, Boolean> {
 
